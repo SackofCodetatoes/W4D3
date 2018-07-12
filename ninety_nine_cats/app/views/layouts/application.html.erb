@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NinetyNineCats</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+    <% if logged_in? %>
+    Hello, <%= current_user.username %>!
+    <% else %>
+      <a href=" <%= new_session_url %> ">Login</a>
+    <% end %>
+    <% if flash.now[:errors] %>
+      <% flash.now[:errors].each do |error| %>
+        <li> <%= error %> </li>
+      <% end %>
+    <% end %>
+    
+    <%= yield %>
+  </body>
+</html>
